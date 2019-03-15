@@ -56,6 +56,12 @@ export default (sequelize, DataTypes) => {
         args: false,
       }  
     },
+    country_code: {
+      type: DataTypes.STRING,
+      allowNull: {
+        args: false,
+      }
+    },
     phone: {
       type: DataTypes.STRING,
       allowNull: {
@@ -66,6 +72,12 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: {
         args: true,
+      }
+    },
+    google_2fa_secret: {
+      type: DataTypes.TEXT,
+      allowNull: {
+        args: true
       }
     }
   }, {});
