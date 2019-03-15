@@ -26,6 +26,10 @@ export default (app) => {
   app.post('/api/data/create', cors(corsOptions), passport.authenticate('jwt', {session: false}) , DataStore.create);
   app.get('/api/data/list', cors(corsOptions), passport.authenticate('jwt', {session: false}), DataStore.getAllData);
 
+  // -------------------------- Phone verification -------------------------------
+  app.post('/api/send-phone-verification-code', cors(corsOptions), passport.authenticate('jwt', {session: false}), Users.sendPhoneVerificationCode);
+  app.post('/api/verify-phone', cors(corsOptions), passport.authenticate('jwt', {session: false}), Users.phoneVerification);
+
 };
 
 
