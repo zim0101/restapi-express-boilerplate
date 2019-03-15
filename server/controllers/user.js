@@ -10,7 +10,7 @@ const { User } = model;
 
 class Users {
   static signUp(req, res) {
-    const { name, username, email, password } = req.body;
+    const { name, username, email, password, phone } = req.body;
     const type = "user";
       return User
         .create({
@@ -18,7 +18,8 @@ class Users {
           username,
           email,
           password,
-          type
+          type,
+          phone
         })
         .then(userData => res.status(201).send({
           success: true,
