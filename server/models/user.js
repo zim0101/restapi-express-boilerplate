@@ -55,6 +55,18 @@ export default (sequelize, DataTypes) => {
       allowNull: {
         args: false,
       }  
+    },
+    phone: {
+      type: DataTypes.STRING,
+      allowNull: {
+        args: false,
+      }
+    },
+    authyId: {
+      type: DataTypes.STRING,
+      allowNull: {
+        args: true,
+      }
     }
   }, {});
 
