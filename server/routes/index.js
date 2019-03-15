@@ -31,8 +31,8 @@ export default (app) => {
   app.post('/api/verify-phone', cors(corsOptions), passport.authenticate('jwt', {session: false}), Users.phoneVerification);
 
   // -------------------------- google2FA verification -------------------------------
-  app.post('/api/google-two-factor-verification', cors(corsOptions), passport.authenticate('jwt', {session: false}), Users.google2FA);
-  app.post('/api/verify-google-verification-code', cors(corsOptions), passport.authenticate('jwt', {session: false}), Users.verifyGoogle2FA);
+  app.post('/api/google-two-factor-verification', cors(corsOptions), passport.authenticate('jwt', {session: false}), Users.generateQRcodeGoogle2FA);
+  app.post('/api/verify-google-verification-code', cors(corsOptions), passport.authenticate('jwt', {session: false}), Users.verifyGoogleAuthenticatorCode);
 };
 
 

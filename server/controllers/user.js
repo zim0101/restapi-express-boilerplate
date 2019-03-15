@@ -175,53 +175,36 @@ class Users {
         }
     }
 
-    static google2FA(req, res) {
+    static generateQRcodeGoogle2FA(req, res) {
 
         const token = getToken(req.headers);
         const username = req.body.username;
 
         if (token) {
             
-
             var secret = speakeasy.generateSecret({
                 length: 20
             });
-            // Save this value to your DB for the user
+            
             User
-                .update({
-                        // Create new column for google_2FA 
-                        google_2fa_secret: secret.base32
-                    },  
-                    {
-                        where: {
-                            username: username
-                        }
-                    }
-                )
+                .update({ google_2fa_secret: secret.base32 }, { where: { username: username } } )
                 .then((user) => {
-                    
                     if(!user) {
                         return res.status(401).send({
                             status: 'failed',
                             message: 'User not found!'
                         });
                     } else {
-                        console.log("secret code: ", secret.base32);
-
-
                         QRCode.toDataURL(secret.otpauth_url, function(err, image_data) {
                             if(!err) {
-                                console.log("Image Data: ", image_data); // A data URI for the QR code image
+                                console.log("Image Data: ", image_data);
                                 return res.status(200).send(image_data);
                             } else {
                                 console.log(err);
                                 return res.status(400).send(err);
                             }
-                            
                         });
-
                     }
-
                 })
                 .catch((error) => res.status(400).send(error));
 
@@ -235,8 +218,9 @@ class Users {
 
     }
 
-    static async verifyGoogle2FA(req, res) {
-        const userToken = req.body.google_verification_code;
+    static async verifyGoogleAuthenticatorCode(req, res) {
+
+        const google_verification_code = req.body.google_verification_code;
         const username = req.body.username;
 
         var user = await User
@@ -249,13 +233,12 @@ class Users {
                           }
                       })
                       .catch((error) => console.log(error));
-        // Load the secret.base32 from their user record in database
         var secret = user.dataValues.google_2fa_secret;
-        // Verify that the user token matches what it should at this moment
+
         var verified = speakeasy.totp.verify({
             secret: secret,
             encoding: 'base32',
-            token: userToken
+            token: google_verification_code
         });
 
         if(!verified) {
