@@ -233,23 +233,37 @@ class Users {
         }
 
 
-        // Example:  JFBVG4R7ORKHEZCFHZFW26L5F55SSP2Y
     }
 
     static verifyGoogle2FA(req, res) {
-        // This is provided the by the user via form POST
-        // var userToken = params.get('token');
-        var userToken = req.body.google_verification_code;
+        const userToken = req.body.google_verification_code;
+        const username = req.body.username;
 
+        var user = User
+                      .findOne({where: {username: username}})
+                      .then((user) => {
+                          if(!user) {
+                            return null;
+                          } else {
+                            return user;
+                          }
+                      })
+                      .catch((error) => console.log(error));
         // Load the secret.base32 from their user record in database
-        var secret = '';
+        var secret = user.google_2fa_secret;
 
         // Verify that the user token matches what it should at this moment
         var verified = speakeasy.totp.verify({
-          secret: secret,
-          encoding: 'base32',
-          token: userToken
+            secret: secret,
+            encoding: 'base32',
+            token: userToken
         });
+
+        if(!verified) {
+            return res.status(400).send({message: 'Code not verified, How can it be? Do you even have android or any device like that? You are poor zimmy...2FA is not for you'});
+        } else {
+            return res.status(200).send({message: 'Verified!!!!!!!!!!!!'});
+        }
     }
 }
 

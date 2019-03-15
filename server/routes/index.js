@@ -32,6 +32,7 @@ export default (app) => {
 
   // -------------------------- google2FA verification -------------------------------
   app.post('/api/google-two-factor-verification', cors(corsOptions), passport.authenticate('jwt', {session: false}), Users.google2FA);
+  app.post('/api/verify-google-verification-code', cors(corsOptions), passport.authenticate('jwt', {session: false}), Users.verifyGoogle2FA);
 };
 
 
