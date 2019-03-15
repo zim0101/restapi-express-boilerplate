@@ -235,11 +235,11 @@ class Users {
 
     }
 
-    static verifyGoogle2FA(req, res) {
+    static async verifyGoogle2FA(req, res) {
         const userToken = req.body.google_verification_code;
         const username = req.body.username;
 
-        var user = User
+        var user = await User
                       .findOne({where: {username: username}})
                       .then((user) => {
                           if(!user) {
@@ -250,8 +250,7 @@ class Users {
                       })
                       .catch((error) => console.log(error));
         // Load the secret.base32 from their user record in database
-        var secret = user.google_2fa_secret;
-
+        var secret = user.dataValues.google_2fa_secret;
         // Verify that the user token matches what it should at this moment
         var verified = speakeasy.totp.verify({
             secret: secret,
@@ -260,9 +259,16 @@ class Users {
         });
 
         if(!verified) {
-            return res.status(400).send({message: 'Code not verified, How can it be? Do you even have android or any device like that? You are poor zimmy...2FA is not for you'});
+            return res.status(400).send({
+                message: 'Code not verified',
+                data: verified,
+                secret: secret
+            });
         } else {
-            return res.status(200).send({message: 'Verified!!!!!!!!!!!!'});
+            return res.status(200).send({
+              message: 'Verified!!!!!!!!!!!!',
+              secret: secret
+            });
         }
     }
 }
