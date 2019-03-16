@@ -156,7 +156,6 @@ class Users {
                     error: error
                 };
                 console.log(authy_response);
-                // return res.status(400).send(error);
             } else {
                 console.log(response);
                 authy_response = {
@@ -164,7 +163,6 @@ class Users {
                     response: response
                 };
                 console.log(authy_response);
-                // return res.status(200).send(response);
             }
         });
 
