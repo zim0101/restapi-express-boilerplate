@@ -1,17 +1,17 @@
 import model from '../models';
 import jwt from 'jsonwebtoken';
 import passport from 'passport';
-require('../config/passport')(passport);
+
 const {User} = model;
 const authy = require("authy")("bAMe6nyqbfWHsbuAnuF2j8WCNQE38r3C");
 const speakeasy = require('speakeasy');
 const QRCode = require('qrcode');
-
+require('../config/passport')(passport);
 
 // ---------------------------------------- Custom function ----------------------------------------
 const getToken = (headers) => {
     if (headers && headers.authorization) {
-        var parted = headers.authorization.split(' ');
+        let parted = headers.authorization.split(' ');
         if (parted.length === 2) {
             return parted[1];
         } else {
@@ -68,7 +68,7 @@ class Users {
                 }
                 user.comparePassword(req.body.password, (err, isMatch) => {
                     if (isMatch && !err) {
-                        var token = jwt.sign(JSON.parse(JSON.stringify(user)), 'nodeauthsecret', {
+                        let token = jwt.sign(JSON.parse(JSON.stringify(user)), 'nodeauthsecret', {
                             expiresIn: 86400 * 30
                         });
                         jwt.verify(token, 'nodeauthsecret', function(err, data) {
@@ -113,7 +113,7 @@ class Users {
         const phone = req.body.phone;
         const country_code = req.body.country_code;
         const via = "sms";
-        var authy_response = {};
+        let authy_response = {};
 
         authy.phones().verification_start(phone, country_code, via, function(error, response) {
             if (error) {
@@ -145,7 +145,7 @@ class Users {
         const country_code = req.body.country_code;
         // const via = "sms";
         const verification_code = req.body.verification_code;
-        var authy_response = {};
+        let authy_response = {};
 
         authy.phones().verification_check(phone, country_code, verification_code, function(error, response) {
             if (error) {
@@ -182,7 +182,7 @@ class Users {
 
         if (token) {
             
-            var secret = speakeasy.generateSecret({
+            let secret = speakeasy.generateSecret({
                 length: 20
             });
             
@@ -223,7 +223,7 @@ class Users {
         const google_verification_code = req.body.google_verification_code;
         const username = req.body.username;
 
-        var user = await User
+        let user = await User
                       .findOne({where: {username: username}})
                       .then((user) => {
                           if(!user) {
@@ -233,9 +233,9 @@ class Users {
                           }
                       })
                       .catch((error) => console.log(error));
-        var secret = user.dataValues.google_2fa_secret;
+        let secret = user.dataValues.google_2fa_secret;
 
-        var verified = speakeasy.totp.verify({
+        let verified = speakeasy.totp.verify({
             secret: secret,
             encoding: 'base32',
             token: google_verification_code
