@@ -1,4 +1,4 @@
-# ========== restapi-express-boilerplate ===========
+# restapi-express-boilerplate 
 
 
 Features:

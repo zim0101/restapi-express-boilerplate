@@ -30,6 +30,7 @@
     "pg-hstore": "^2.3.2",
     "qrcode": "^1.3.3",
     "sequelize": "^4.43.0",
-    "speakeasy": "^2.0.0"
+    "speakeasy": "^2.0.0",
+    "stripe": "^6.27.0"
   }
 }

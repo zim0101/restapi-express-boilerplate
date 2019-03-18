@@ -213,7 +213,6 @@ class Users {
             });
         }
 
-
     }
 
     static async verifyGoogleAuthenticatorCode(req, res) {

@@ -1,5 +1,6 @@
 import Users from '../controllers/user';
 import DataStore from '../controllers/data';
+import Stripe from '../controllers/stripe';
 import passport from 'passport';
 import cors from 'cors';
 import isUser from '../middleware/isUser';
@@ -33,6 +34,10 @@ export default (app) => {
   // -------------------------- google2FA verification -------------------------------
   app.post('/api/google-two-factor-verification', cors(corsOptions), passport.authenticate('jwt', {session: false}), Users.generateQRcodeGoogle2FA);
   app.post('/api/verify-google-verification-code', cors(corsOptions), passport.authenticate('jwt', {session: false}), Users.verifyGoogleAuthenticatorCode);
+
+  // -------------------------- Stripe testing ----------------------------------------
+  app.post('/api/stripe-testing', Stripe.payToTestAccount);
+
 };
 
 

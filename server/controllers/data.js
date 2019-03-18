@@ -5,7 +5,7 @@ const { Data } = model;
 
 const getToken = (headers) => {
     if (headers && headers.authorization) {
-        var parted = headers.authorization.split(' ');
+        let parted = headers.authorization.split(' ');
         if (parted.length === 2) {
             return parted[1];
         } else {
@@ -23,7 +23,7 @@ class DataStore {
 
         const data = req.body.data;
 
-        var token = getToken(req.headers);
+        let token = getToken(req.headers);
 
         if(token) {
 
@@ -51,7 +51,7 @@ class DataStore {
 
     static getAllData(req, res) {
 
-        var token = getToken(req.headers);
+        let token = getToken(req.headers);
 
         if(token) {
 
