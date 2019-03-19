@@ -143,6 +143,16 @@ class DataStore {
     //
     //     }
     // }
+
+    static checkFile(req, res) {
+        let originalName = req.file.originalname.split('.');
+        let data = {
+            fileName : originalName[0],
+            fileType : originalName[1]
+        };
+        return res.status(200).send(req.file);
+    }
+
 }
 
 export default DataStore;
