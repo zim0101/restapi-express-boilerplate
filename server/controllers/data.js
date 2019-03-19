@@ -75,35 +75,74 @@ class DataStore {
     }
 
     static updateData(req, res) {
-        let token = getToken();
+        let token = getToken(req.headers);
         if(token) {
             return Data
-                .update({
-                    data: req.body.data,
-                }, {
+                .find({
                     where: {
                         id: req.body.id,
                     }
                 })
                 .then((data) => {
-                    if(!data) {
-                        res.status(401).send({
-                            success: false,
-                            message: 'Data not found'
-                        });
-                    } else {
+                    data.update({
+                        data: req.body.data,
+                    }).then((response) => {
                         res.status(200).send({
                             success: true,
                             message: 'Data has been updated',
-                            data: data
-                        })
-                    }
+                            response: response,
+                        });
+                    }).catch((error) => {
+                        res.status(400).send(error);
+                    });
                 })
                 .catch((error) => {res.status(400).send(error)});
+        } else {
+            return res.status(403).send({
+                success: false,
+                message: 'Unauthorized'
+            });
         }
     }
+
+    static deleteData(req, res) {
+        Data
+            .destroy({
+                where: {
+                    id: req.body.id
+                }
+            })
+            .then((data) => {
+                if(!data) {
+                    return res.status(401).send({
+                        success: false,
+                        message: 'Data not found',
+                    });
+                } else {
+                    return res.status(200).send({
+                        success: true,
+                        message: 'Data has been deleted',
+                        data: data,
+                    });
+                }
+            })
+            .catch((error) => {
+                return res.status(400).send({
+                    success: false,
+                    error: error,
+                });
+            });
+    }
+
+    // static filterData(req, res) {
+    //     let token = getToken(req.headers);
+    //
+    //     if (token) {
+    //
+    //     } else {
+    //
+    //     }
+    // }
 }
-
-
 
 export default DataStore;

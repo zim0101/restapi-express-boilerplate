@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9292224e-cf00-4a50-b1ae-cf9b48b6ae79" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/controllers/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/data.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/index.js" afterDir="false" />
     </list>
@@ -22,8 +20,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/controllers/data.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="101" column="35" selection-start-line="101" selection-start-column="35" selection-end-line="101" selection-end-column="35" />
+            <state relative-caret-position="380">
+              <caret line="145" column="1" lean-forward="true" selection-start-line="145" selection-start-column="1" selection-end-line="145" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -31,8 +29,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="26" column="17" lean-forward="true" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="28" />
+            <state relative-caret-position="442">
+              <caret line="42" column="2" lean-forward="true" selection-start-line="42" selection-start-column="2" selection-end-line="42" selection-end-column="2" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
@@ -151,12 +149,12 @@
       <workItem from="1552660356647" duration="243000" />
       <workItem from="1552714574223" duration="10452000" />
       <workItem from="1552889184033" duration="5993000" />
-      <workItem from="1552974669675" duration="2732000" />
+      <workItem from="1552974669675" duration="7173000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21944000" />
+    <option name="totallyTimeSpent" value="26385000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -174,7 +172,7 @@
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="npm" order="1" sideWeight="0.5017182" side_tool="true" weight="0.18498024" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="3" sideWeight="0.49828178" visible="true" weight="0.1881423" />
+      <window_info active="true" content_ui="combo" id="Project" order="3" sideWeight="0.49828178" visible="true" weight="0.1881423" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -308,9 +306,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="db://24099891-b976-4843-a487-5cc2c404b6b7/objects/schemas/public/tables/Users">
       <provider selected="true" editor-type-id="1.DATA">
         <state row-count="1" readonly="false">
@@ -362,6 +357,9 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="db://24099891-b976-4843-a487-5cc2c404b6b7/objects/schemas/public/tables/Data">
       <provider selected="true" editor-type-id="1.DATA">
         <state row-count="3" readonly="false">
@@ -378,10 +376,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="uml://JavaScript-modules-diagram//home/wasim/node_projects/restapi-v2-source/server/controllers/data.js">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JavaScript-modules-diagram</ID>
+          <OriginalElement>$PROJECT_DIR$/server/controllers/data.js</OriginalElement>
+          <nodes>
+            <node x="" y="">$PROJECT_DIR$/server/controllers/data.js#model#7;/home/wasim/node_projects/restapi-v2-source/server/controllers/data.js#passport#38;/home/wasim/node_projects/restapi-v2-source/server/controllers/data.js#passport.js#64;</node>
+            <node x="" y="">$PROJECT_DIR$/node_modules/passport/lib/index.js</node>
+            <node x="" y="">$PROJECT_DIR$/server/models/index.js</node>
+            <node x="" y="">$PROJECT_DIR$/server/config/passport.js</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="175.5" y="134.5" />
+          <SelectedNodes />
+          <Categories>
+            <Category>All</Category>
+          </Categories>
+          <VISIBILITY>Details</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="26" column="17" lean-forward="true" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="28" />
+        <state relative-caret-position="442">
+          <caret line="42" column="2" lean-forward="true" selection-start-line="42" selection-start-column="2" selection-end-line="42" selection-end-column="2" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>
@@ -390,8 +410,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/controllers/data.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="101" column="35" selection-start-line="101" selection-start-column="35" selection-end-line="101" selection-end-column="35" />
+        <state relative-caret-position="380">
+          <caret line="145" column="1" lean-forward="true" selection-start-line="145" selection-start-column="1" selection-end-line="145" selection-end-column="1" />
         </state>
       </provider>
     </entry>
