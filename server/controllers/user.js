@@ -73,7 +73,7 @@ class Users {
                         });
                         jwt.verify(token, 'nodeauthsecret', function(err, data) {
                             console.log(err, data);
-                        })
+                        });
                         res.json({
                             success: true,
                             token: 'JWT ' + token
@@ -143,7 +143,6 @@ class Users {
 
         const phone = req.body.phone;
         const country_code = req.body.country_code;
-        // const via = "sms";
         const verification_code = req.body.verification_code;
         let authy_response = {};
 

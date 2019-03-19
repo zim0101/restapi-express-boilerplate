@@ -18,7 +18,6 @@ const getToken = (headers) => {
 
 class DataStore {
 
-
     static create(req, res) {
 
         const data = req.body.data;
@@ -134,22 +133,7 @@ class DataStore {
             });
     }
 
-    // static filterData(req, res) {
-    //     let token = getToken(req.headers);
-    //
-    //     if (token) {
-    //
-    //     } else {
-    //
-    //     }
-    // }
-
     static checkFile(req, res) {
-        let originalName = req.file.originalname.split('.');
-        let data = {
-            fileName : originalName[0],
-            fileType : originalName[1]
-        };
         return res.status(200).send(req.file);
     }
 
