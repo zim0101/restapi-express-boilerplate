@@ -25,18 +25,20 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="24099891-b976-4843-a487-5cc2c404b6b7">
-        <schema name="public" object-types="column, table, constraint, index, dataset trigger" />
+        <schema name="public" object-types="index, dataset trigger, function, constraint, column, sequence, table, view" />
       </connection>
     </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="24099891-b976-4843-a487-5cc2c404b6b7">
       <console name="DB Details" type="STANDARD" schema="" session="Main" />
-      <console name="DB Details 1" type="STANDARD" schema="public" session="Main"><![CDATA[SELECT * FROM "Users" where id = 10;]]></console>
+      <console name="DB Details 1" type="STANDARD" schema="public" session="Main">SELECT * FROM &quot;Users&quot; where id = 10;</console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="24099891-b976-4843-a487-5cc2c404b6b7" object-ref="schemas/public/tables/Data" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="24099891-b976-4843-a487-5cc2c404b6b7" />

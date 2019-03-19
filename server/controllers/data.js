@@ -73,6 +73,35 @@ class DataStore {
         }
         
     }
+
+    static updateData(req, res) {
+        let token = getToken();
+        if(token) {
+            return Data
+                .update({
+                    data: req.body.data,
+                }, {
+                    where: {
+                        id: req.body.id,
+                    }
+                })
+                .then((data) => {
+                    if(!data) {
+                        res.status(401).send({
+                            success: false,
+                            message: 'Data not found'
+                        });
+                    } else {
+                        res.status(200).send({
+                            success: true,
+                            message: 'Data has been updated',
+                            data: data
+                        })
+                    }
+                })
+                .catch((error) => {res.status(400).send(error)});
+        }
+    }
 }
 
 

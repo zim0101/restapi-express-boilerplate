@@ -23,9 +23,10 @@ export default (app) => {
   // -------------------------- User Authentication Routes -------------------------------
   app.post('/api/sign-up', cors(corsOptions), Users.signUp);
   app.post('/api/sign-in', cors(corsOptions), Users.signin);
-  // -------------------------- API Routes with middlewares and API authentication -------------------------------
+  // -------------------------- API Routes with middleman's and API authentication -------------------------------
   app.post('/api/data/create', cors(corsOptions), passport.authenticate('jwt', {session: false}) , DataStore.create);
   app.get('/api/data/list', cors(corsOptions), passport.authenticate('jwt', {session: false}), DataStore.getAllData);
+  app.post('/api/data/update', cors(corsOptions), passport.authenticate('jwt', {session: false}), DataStore.updateData);
 
   // -------------------------- Phone verification -------------------------------
   app.post('/api/send-phone-verification-code', cors(corsOptions), passport.authenticate('jwt', {session: false}), Users.sendPhoneVerificationCode);
