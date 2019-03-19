@@ -5,6 +5,7 @@ import passport from 'passport';
 import cors from 'cors';
 
 require('../config/passport')(passport);
+const path = require('path');
 const crypto = require('crypto');
 const multer = require('multer');
 const mime = require('mime');
@@ -46,7 +47,8 @@ export default (app) => {
     app.post('/api/data/delete', cors(corsOptions), passport.authenticate('jwt', {session: false}), DataStore.deleteData);
     app.post('/api/data/file', cors(corsOptions), passport.authenticate('jwt', {session: false}), upload.single('file'), DataStore.checkFile);
     app.get('/api/data/image', function(req, res) {
-        res.sendFile('/home/wasim/node_projects/restapi-v2-source/uploads/cbb5fa48f07997471dae19cdf97111cc1552994074652.png');
+        let pathname = path.join(__dirname, '../../uploads/cbb5fa48f07997471dae19cdf97111cc1552994074652.png');
+        res.sendFile(pathname);
     });
 
     // -------------------------- Phone verification -------------------------------
@@ -62,5 +64,5 @@ export default (app) => {
     // -------------------------- Stripe testing ----------------------------------------
 
     app.post('/api/stripe-testing', Stripe.payToTestAccount);
-    
+
 };
