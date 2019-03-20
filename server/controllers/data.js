@@ -2,6 +2,8 @@ import model from '../models';
 import passport from 'passport';
 require('../config/passport')(passport);
 const { Data } = model;
+const Client = require('bitcoin-core');
+
 
 const getToken = (headers) => {
     if (headers && headers.authorization) {
@@ -135,6 +137,21 @@ class DataStore {
 
     static checkFile(req, res) {
         return res.status(200).send(req.file);
+    }
+
+    static async bitcoinAPI(req, res) {
+
+        const client = new Client({
+            host: '142.44.244.65',
+            username: 'btctestnet',
+            password: 'btctestnet',
+            port: 18332
+        });
+
+        client.getNewAddress().then((address) => {
+            console.log(address);
+            return res.status(200).send(address);
+        });
     }
 
 }

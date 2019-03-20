@@ -22,6 +22,9 @@ let storage = multer.diskStorage({
 });
 let upload = multer({ storage: storage });
 
+
+
+
 export default (app) => {
 
     let corsOptions = {
@@ -29,6 +32,8 @@ export default (app) => {
         origin: 'http://localhost:3001',
         optionsSuccessStatus: 200
     };
+
+
 
     app.get('/api', (req, res) => res.status(200).send({
         message: 'Welcome to the REST API Boilerplate!',
@@ -50,6 +55,8 @@ export default (app) => {
         let pathname = path.join(__dirname, '../../uploads/cbb5fa48f07997471dae19cdf97111cc1552994074652.png');
         res.sendFile(pathname);
     });
+
+    app.post('/api/data/bitcoin', cors(corsOptions), passport.authenticate('jwt', {session: false}), DataStore.bitcoinAPI);
 
     // -------------------------- Phone verification -------------------------------
 
