@@ -142,10 +142,10 @@ class DataStore {
     static async bitcoinAPI(req, res) {
 
         const client = new Client({
-            host: '142.44.244.65',
-            username: 'btctestnet',
-            password: 'btctestnet',
-            port: 18332
+            host: '*********',
+            username: '*********',
+            password: '*********',
+            port: 111111111111
         });
 
         client.getNewAddress().then((address) => {
