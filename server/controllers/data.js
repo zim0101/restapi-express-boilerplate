@@ -27,7 +27,6 @@ const getToken = (headers) => {
 };
 
 
-
 class DataStore {
 
     static create(req, res) {
