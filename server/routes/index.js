@@ -56,7 +56,10 @@ export default (app) => {
         res.sendFile(pathname);
     });
 
-    app.post('/api/data/bitcoin', cors(corsOptions), passport.authenticate('jwt', {session: false}), DataStore.bitcoinAPI);
+    app.post('/api/data/get-new-address', cors(corsOptions), passport.authenticate('jwt', {session: false}), DataStore.getNewBitcoinAddress);
+    app.post('/api/data/send-bitcoins', cors(corsOptions), passport.authenticate('jwt', {session: false}), DataStore.sendBitcoin);
+    app.post('/api/data/get-balance', cors(corsOptions), passport.authenticate('jwt', {session: false}), DataStore.getBalanceInfo);
+    app.post('/api/data/get-transaction-details', cors(corsOptions), passport.authenticate('jwt', {session: false}), DataStore.getTransectionDetails);
 
     // -------------------------- Phone verification -------------------------------
 

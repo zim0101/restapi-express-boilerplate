@@ -1,9 +1,17 @@
 import model from '../models';
 import passport from 'passport';
 require('../config/passport')(passport);
+require('dotenv').config();
+
 const { Data } = model;
 const Client = require('bitcoin-core');
 
+const client = new Client({
+    host: process.env.BTC_HOST,
+    username: process.env.BTC_USERNAME,
+    password: process.env.BTC_PASSWORD,
+    port: process.env.BTC_PORT
+});
 
 const getToken = (headers) => {
     if (headers && headers.authorization) {
@@ -17,6 +25,8 @@ const getToken = (headers) => {
         return null;
     }
 };
+
+
 
 class DataStore {
 
@@ -139,21 +149,61 @@ class DataStore {
         return res.status(200).send(req.file);
     }
 
-    static async bitcoinAPI(req, res) {
-
-        const client = new Client({
-            host: '*********',
-            username: '*********',
-            password: '*********',
-            port: 111111111111
-        });
-
+    static async getNewBitcoinAddress(req, res) {
         client.getNewAddress().then((address) => {
             console.log(address);
             return res.status(200).send(address);
         });
     }
 
+    static async sendBitcoin(req, res) {
+        client.sendToAddress('2MwM1vpsiqJNRNmcB8RN3vGnAcn9KRv2Qcg', 0.1,  'sendtoaddress example', 'Nemo From Example.com').then((response) => {
+            return res.status(200).send({
+                success: true,
+                message: 'Transactions successful!',
+                response: response,
+            });
+        }).catch((error) => {
+            return res.status(400).send({
+                success: true,
+                message: 'Transactions failed!',
+                response: error,
+            });
+        });
+    }
+
+    static async getBalanceInfo(req, res) {
+        await client.getBalance('2MwM1vpsiqJNRNmcB8RN3vGnAcn9KRv2Qcg').then((response) => {
+            return res.status(200).send({
+                success: true,
+                message: 'Got balance',
+                response: response,
+            });
+        }).catch((error) => {
+            return res.status(400).send({
+                success: true,
+                message: 'Got balance',
+                response: error,
+            });
+        });
+    }
+
+    static async getTransectionDetails(req, res) {
+        client.getTransaction('171b376a850148c661892d96b5a2d1e925938c4d8a7fc27c0ede264d5ef9f07c').then((response) => {
+            return res.status(200).send({
+                success: true,
+                message: 'Transaction details:',
+                response: response,
+            });
+        }).catch((error) => {
+            return res.status(400).send({
+                success: true,
+                message: 'Transaction details failed!',
+                response: error,
+            });
+        });
+    }
 }
+
 
 export default DataStore;
