@@ -9,6 +9,8 @@ const path = require('path');
 const crypto = require('crypto');
 const multer = require('multer');
 const mime = require('mime');
+const isUser = require('./../middleware/isUser');
+
 
 let storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -47,7 +49,7 @@ export default (app) => {
     // -------------------------- API Routes with middleman's and API authentication -------------------------------
 
     app.post('/api/data/create', cors(corsOptions), passport.authenticate('jwt', {session: false}) , DataStore.create);
-    app.get('/api/data/list', cors(corsOptions), passport.authenticate('jwt', {session: false}), DataStore.getAllData);
+    app.get('/api/data/list', cors(corsOptions), passport.authenticate('jwt', {session: false}), isUser, DataStore.getAllData);
     app.post('/api/data/update', cors(corsOptions), passport.authenticate('jwt', {session: false}), DataStore.updateData);
     app.post('/api/data/delete', cors(corsOptions), passport.authenticate('jwt', {session: false}), DataStore.deleteData);
     app.post('/api/data/file', cors(corsOptions), passport.authenticate('jwt', {session: false}), upload.single('file'), DataStore.checkFile);

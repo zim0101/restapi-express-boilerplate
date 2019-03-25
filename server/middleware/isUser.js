@@ -1,13 +1,13 @@
 
-import Users from '../controllers/user';
-
-
-export default async function isUser(request, _response, next) {
-    var username = request.body.username;
-    var type = await Users.userType(username);
-    if(type === "user") {
+// import model from '../models';
+// const {User} = model;
+function isUser (req, res, next) {
+    if (req.user.type === "user") {
         next();
     } else {
-        response.status(403).json({message: "Forbidden"});
+        res.redirect('/api/sign-in');
     }
+    
 }
+
+module.exports = isUser;
