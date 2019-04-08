@@ -7,6 +7,7 @@ Features:
 2. REST API authentication
 3. Phone verification using TWILIO 
 4. 2 Factor Authentication
+5. Integreated Bitcoin API
 ----------------------------------
 
 Packages:
