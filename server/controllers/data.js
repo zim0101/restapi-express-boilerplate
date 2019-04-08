@@ -56,7 +56,6 @@ class DataStore {
                 message: "Unauthorized"
             });
         }
-
     }
 
     static getAllData(req, res) {
